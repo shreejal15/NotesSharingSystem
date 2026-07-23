@@ -1,0 +1,123 @@
+:root {
+  --ragin-beige: #fff5d7;
+  --coral-pink: #ff5e6c;
+  --coral-pink-hover: #e04e5c;
+  --sleuthe-yellow: #feb300;
+  --text-dark: #2b2b2b;
+  --white: #ffffff;
+  --font-family: 'Poppins', sans-serif;
+}
+
+body.auth-page {
+  background-color: var(--ragin-beige);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  font-family: var(--font-family);
+}
+
+.card {
+  background-color: var(--white);
+  padding: 40px 35px;
+  width: 100%;
+  max-width: 380px;
+  border-radius: 16px;
+  text-align: center;
+  box-sizing: border-box;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  border-top: 6px solid var(--coral-pink);
+}
+
+.card h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0 0 6px 0;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: #666666;
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+.field {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.field label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+
+.field input {
+  width: 100%;
+  padding: 12px 14px;
+  background-color: #fafafa;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.field input:focus {
+  border-color: var(--coral-pink);
+  background-color: var(--white);
+}
+
+.field input::placeholder {
+  color: #aaaaaa;
+  opacity: 1;
+}
+
+.btn-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.btn {
+  background-color: var(--coral-pink);
+  color: var(--white);
+  border: none;
+  padding: 12px 36px;
+  border-radius: 8px;
+  font-family: var(--font-family);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn:hover {
+  background-color: var(--coral-pink-hover);
+  transform: translateY(-1px);
+}
+
+.note {
+  font-size: 0.9rem;
+  color: #555555;
+  margin: 0;
+}
+
+.note a {
+  color: var(--coral-pink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.note a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Log In</title>
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-page">
+
+  <div class="card">
+    <h2>Welcome Back</h2>
+    <p class="subtitle">Sign in to your account</p>
+
+    <form action="login.php" method="POST">
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@gmail.com" required>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+      </div>
+
+      <div class="btn-wrap">
+        <button type="submit" class="btn">Login</button>
+      </div>
+    </form>
+
+    <p class="note">
+      Don't have an account? <a href="signup.html">Sign up</a>
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+:root {
+  --ragin-beige: #fff5d7;
+  --coral-pink: #ff5e6c;
+  --sleuthe-yellow: #feb300;
+  --pink-leaf: #ffaaab;
+  --text-dark: #2b2b2b;
+  --white: #ffffff;
+  --font-family: 'Poppins', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--ragin-beige);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 8%;
+  background-color: var(--ragin-beige);
+  color: var(--text-dark);
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 1.8rem;
+}
+
+.links a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: opacity 0.2s ease;
+}
+
+.links a:hover {
+  opacity: 0.8;
+}
+
+.btn {
+  padding: 0.5rem 1.4rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background-color: var(--coral-pink);
+  color: var(--white) !important;
+}
+
+.btn-outline {
+  border: 2px solid var(--text-dark);
+  background: transparent;
+  color: var(--text-dark) !important;
+}
+
+.hero {
+  position: relative;
+  background-color: var(--ragin-beige);
+  color: var(--text-dark);
+  padding: 4rem 8% 8rem 8%;
+}
+
+.intro {
+  max-width: 600px;
+}
+
+.intro h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.intro p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .intro h1 {
+    font-size: 2.5rem;
+  }
+}
