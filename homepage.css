@@ -1,0 +1,94 @@
+
+*{
+    margin: 2;
+    padding: 0;
+ }
+
+body{
+    
+    background: #fdf2cf;
+    color: #222;
+    font-family:'Times New Roman', Times, serif
+}
+
+/* Navigation */
+.nav{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 25px 80px;
+}
+
+.nav::before{
+    content: "The Learning Hub";
+    position: absolute;
+    left: 50px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.nav ul{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 35px;
+}
+
+.nav a{
+    text-decoration: none;
+    color: #222;
+    font-size: 18px;
+    transition: .3s;
+}
+
+.nav a:hover{
+    color: #ff5a73;
+}
+
+/* Signup Button */
+.nav ul li:nth-child(4) a{
+    background: #c10303;
+    color: white;
+    padding: 14px 26px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.nav ul li:nth-child(4) a:hover{
+    background: #ff4763;
+}
+
+/* Login Button */
+.nav ul li:nth-child(5) a{
+    border: 2px solid #222;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.body{
+    margin-top: 100px;
+    margin-left: 80px;
+    width: 650px;
+}
+
+.body h1{
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1.1;
+    color: #222;
+    margin-bottom: 30px;
+}
+
+.body p{
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+marquee{
+    margin-top: 300px;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 15px;
+}

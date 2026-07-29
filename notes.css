@@ -1,0 +1,218 @@
+:root{
+    --ragin-beige:#fff5d7;
+    --coral-pink:#ff5e6c;
+    --sleuthe-yellow:#feb300;
+    --pink-leaf:#ffaaab;
+    --text-dark:#2b2b2b;
+    --white:#ffffff;
+    --font-family:'Poppins',sans-serif;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:var(--font-family);
+}
+
+body{
+    background:var(--ragin-beige);
+}
+
+/* ================= NAVBAR ================= */
+
+.nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 60px;
+    background:var(--white);
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+    color:var(--coral-pink);
+}
+
+.links{
+    display:flex;
+    list-style:none;
+    gap:20px;
+}
+
+.links a{
+    text-decoration:none;
+    color:var(--text-dark);
+    font-weight:600;
+    transition:.3s;
+}
+
+.links a:hover,
+.links a.active{
+    color:var(--coral-pink);
+}
+
+/* Buttons */
+
+.btn{
+    padding:8px 18px;
+    border-radius:8px;
+}
+
+.btn-primary{
+    background:var(--coral-pink);
+    color:white !important;
+}
+
+.btn-outline{
+    border:2px solid var(--coral-pink);
+    color:var(--coral-pink) !important;
+}
+
+.btn-primary:hover{
+    background:var(--pink-leaf);
+}
+
+.btn-outline:hover{
+    background:var(--coral-pink);
+    color:white !important;
+}
+
+/* ================= PAGE ================= */
+
+.notes-section{
+    width:90%;
+    max-width:1200px;
+    margin:50px auto;
+}
+
+.notes-section h1{
+    text-align:center;
+    color:var(--coral-pink);
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.notes-section p{
+    text-align:center;
+    color:#666;
+    margin-bottom:35px;
+}
+
+/* ================= LAYOUT ================= */
+
+.container{
+    display:grid;
+    grid-template-columns:300px 1fr;
+    gap:30px;
+}
+
+/* ================= LEFT PANEL ================= */
+
+.left-panel{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.semester-btn{
+    width:100%;
+    padding:18px;
+    margin-bottom:15px;
+    border:none;
+    border-radius:10px;
+    background:var(--white);
+    border:2px solid var(--sleuthe-yellow);
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.semester-btn:hover{
+    background:var(--sleuthe-yellow);
+}
+
+.semester-btn.active{
+    background:var(--sleuthe-yellow);
+    color:var(--text-dark);
+}
+
+/* ================= RIGHT PANEL ================= */
+
+.right-panel{
+    background:white;
+    border-radius:15px;
+    padding:30px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.right-panel h2{
+    color:var(--coral-pink);
+    margin-bottom:25px;
+}
+
+#subjectList{
+    list-style:none;
+}
+
+#subjectList li{
+    padding:16px;
+    margin-bottom:12px;
+    border:2px solid #eee;
+    border-radius:10px;
+    font-size:17px;
+    font-weight:500;
+    transition:.3s;
+}
+
+#subjectList li:hover{
+    background:var(--pink-leaf);
+    border-color:var(--coral-pink);
+    cursor:pointer;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+.container{
+    grid-template-columns:1fr;
+}
+
+.left-panel{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.semester-btn{
+    margin:0;
+}
+
+}
+
+@media(max-width:600px){
+
+.nav{
+    flex-direction:column;
+    gap:15px;
+}
+
+.links{
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.left-panel{
+    grid-template-columns:1fr;
+}
+
+.notes-section h1{
+    font-size:30px;
+}
+
+}
