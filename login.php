@@ -8,7 +8,7 @@
 <body>
 
 <div class="logo">
-    The Learning Hub
+    The <br> Learning Hub
 </div>
 
 <div class="container">

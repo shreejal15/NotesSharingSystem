@@ -1,150 +1,138 @@
-<!DOCTYPE html>
-<html lang="en">
+ <!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes | The Learning Hub</title>
+    <title>Notes</title>
     <link rel="stylesheet" href="notes.css">
 </head>
+
 <body>
 
-<!-- Navigation -->
-<nav class="nav">
-    <div class="logo">The Learning Hub</div>
-
-    <ul class="links">
-        <li><a href="homepage.html">Home</a></li>
-        <li><a href="notes.php" class="active">Notes</a></li>
-        <li><a href="quiz.html">Take Quiz</a></li>
-        <li><a href="signup.html" class="btn btn-primary">Signup</a></li>
-        <li><a href="login.html" class="btn btn-outline">Log In</a></li>
-    </ul>
-</nav>
-
-<section class="notes-section">
+    <nav class="nav">
+        <ul>
+            <li><a href="homepage.php">Home</a></li>
+            <li><a href="notes.php">Notes</a></li>
+            <li><a href="quiz.php">Take Quiz</a></li>
+            <li><a href="signup.php">Signup</a></li>
+            <li><a href="login.php">Login</a></li>
+        </ul>
+    </nav>
 
     <h1>BCA (TU) Notes</h1>
-    <p>Select a semester to view the subjects.</p>
+
+    <p class="subtitle">
+        Select a semester to view the subjects.
+    </p>
 
     <div class="container">
 
-        <!-- Left Panel -->
-        <div class="left-panel">
+        <div class="sidebar">
 
-            <button class="semester-btn active" onclick="showSemester(1,this)">
+            <button class="active" onmouseover="showSemester(1,this)">
                 1st Semester
             </button>
 
-            <button class="semester-btn" onclick="showSemester(2,this)">
+            <button onmouseover="showSemester(2,this)">
                 2nd Semester
             </button>
 
-            <button class="semester-btn" onclick="showSemester(3,this)">
+            <button onmouseover="showSemester(3,this)">
                 3rd Semester
             </button>
 
-            <button class="semester-btn" onclick="showSemester(4,this)">
+            <button onmouseover="showSemester(4,this)">
                 4th Semester
             </button>
 
         </div>
 
-        <!-- Right Panel -->
+        <div class="content">
 
-        <div class="right-panel">
+            <h2 id="title">1st Semester Subjects</h2>
 
-            <h2 id="semesterTitle">1st Semester Subjects</h2>
+            <div id="subjects">
 
-            <ul id="subjectList"></ul>
+                <div class="subject">Computer Fundamentals and Applications</div>
+
+                <div class="subject">Society and Technology</div>
+
+                <div class="subject">English I</div>
+
+                <div class="subject">Mathematics I</div>
+
+                <div class="subject">Digital Logic</div>
+
+                <div class="subject">C Programming</div>
+
+            </div>
 
         </div>
 
     </div>
 
-</section>
-
 <script>
 
-const semesterData = {
+function showSemester(semester, button){
 
-1:[
-"Computer Fundamentals and Applications",
-"Society and Technology",
-"English I",
-"Mathematics I",
-"Digital Logic",
-"C Programming"
-],
-
-2:[
-"Financial Accounting",
-"Microprocessor and Computer Architecture",
-"English II",
-"Mathematics II",
-"Data Structures and Algorithms",
-"Object-Oriented Programming (Java)"
-],
-
-3:[
-"Computer Graphics and Animation",
-"Probability and Statistics",
-"System Analysis and Design",
-"Web Technology",
-"Operating System",
-"Numerical Methods"
-],
-
-4:[
-"Software Engineering",
-"Scripting Language",
-"Database Management System",
-"Management Information System",
-"Computer Networks",
-"Project I"
-]
-
-};
-
-function showSemester(semester,element){
-
-    document.getElementById("semesterTitle").innerHTML =
-    semester + getSuffix(semester) + " Semester Subjects";
-
-    let html="";
-
-    semesterData[semester].forEach(function(subject){
-
-        html += "<li>"+subject+"</li>";
-
-    });
-
-    document.getElementById("subjectList").innerHTML = html;
-
-    let buttons=document.querySelectorAll(".semester-btn");
-
-    buttons.forEach(function(btn){
-
+    document.querySelectorAll(".sidebar button").forEach(function(btn){
         btn.classList.remove("active");
-
     });
 
-    element.classList.add("active");
+    button.classList.add("active");
 
-}
+    let title=document.getElementById("title");
+    let subjects=document.getElementById("subjects");
 
-function getSuffix(num){
+    if(semester==1){
 
-    if(num==1) return "st";
-    if(num==2) return "nd";
-    if(num==3) return "rd";
+        title.innerHTML="1st Semester Subjects";
 
-    return "th";
+        subjects.innerHTML=`
+        <div class="subject">Computer Fundamentals and Applications</div>
+        <div class="subject">Society and Technology</div>
+        <div class="subject">English I</div>
+        <div class="subject">Mathematics I</div>
+        <div class="subject">Digital Logic</div>
+        <div class="subject">C Programming</div>`;
+    }
 
-}
+    else if(semester==2){
 
-window.onload=function(){
+        title.innerHTML="2nd Semester Subjects";
 
-    showSemester(1,document.querySelector(".semester-btn"));
+        subjects.innerHTML=`
+        <div class="subject">Discrete Structures</div>
+        <div class="subject">Data Structures and Algorithms</div>
+        <div class="subject">Microprocessor</div>
+        <div class="subject">Mathematics II</div>
+        <div class="subject">Financial Accounting</div>
+        <div class="subject">Object Oriented Programming</div>`;
+    }
+
+    else if(semester==3){
+
+        title.innerHTML="3rd Semester Subjects";
+
+        subjects.innerHTML=`
+        <div class="subject">Computer Architecture</div>
+        <div class="subject">Java Programming</div>
+        <div class="subject">Computer Graphics</div>
+        <div class="subject">Numerical Methods</div>
+        <div class="subject">Statistics</div>
+        <div class="subject">Data Communication</div>`;
+    }
+
+    else{
+
+        title.innerHTML="4th Semester Subjects";
+
+        subjects.innerHTML=`
+        <div class="subject">Operating System</div>
+        <div class="subject">Database Management System</div>
+        <div class="subject">Software Engineering</div>
+        <div class="subject">Web Technology</div>
+        <div class="subject">Management Information System</div>
+        <div class="subject">Project Work</div>`;
+    }
 
 }
 
