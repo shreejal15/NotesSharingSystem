@@ -22,7 +22,7 @@
     </section>
 
     <marquee direction="right" scrollamount="15">
-        Discover well-organised notes, test your knowledge with quizzes, and stay ahead in your studies.
+        Login to upload notes.
     </marquee>
 
 </body>
