@@ -1,4 +1,7 @@
- <!DOCTYPE html>
+<?php
+session_start();
+?>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Notes</title>
@@ -9,11 +12,21 @@
 
     <nav class="nav">
         <ul>
-            <li><a href="homepage.php">Home</a></li>
-            <li><a href="notes.php">Notes</a></li>
-            <li><a href="quiz.php">Take Quiz</a></li>
-            <li><a href="signup.php">Signup</a></li>
-            <li><a href="login.php">Login</a></li>
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <!-- SHOW THIS NAVBAR WHEN LOGGED IN -->
+                <li><a href="student.php">Home</a></li>
+                <li><a href="notes.php">Notes</a></li>
+                <li><a href="quiz.php">Take Quiz</a></li>
+                <li><a href="quiz_results.php">Quiz Results</a></li>
+                <li><a href="logout.php">Logout</a></li>
+            <?php else: ?>
+                <!-- SHOW THIS NAVBAR WHEN LOGGED OUT -->
+                <li><a href="homepage.php">Home</a></li>
+                <li><a href="notes.php">Notes</a></li>
+                <li><a href="quiz.php">Take Quiz</a></li>
+                <li><a href="signup.php">Signup</a></li>
+                <li><a href="login.php">Login</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
 

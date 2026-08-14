@@ -1,5 +1,55 @@
+<?php
+require_once "db.php";
+
+$error = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $username = trim($_POST["username"]);
+    $email = trim($_POST["email"]);
+    $password = trim($_POST["password"]);
+
+    // Check if email already exists
+    $sql = "SELECT id FROM users WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+
+        $error = "Email already registered. Please use a different email.";
+
+    } else {
+
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $role = "student";
+
+        $sql = "INSERT INTO users (fullname, email, password, role)
+                VALUES (?, ?, ?, ?)";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssss", $username, $email, $password, $role);
+
+        if ($stmt->execute()) {
+
+            header("Location: login.php?success=1");
+            exit();
+
+        } else {
+
+            $error = "Something went wrong. Please try again.";
+        }
+    }
+
+    $stmt->close();
+}
+?>
+
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Sign Up</title>
     <link rel="stylesheet" href="signup.css">
@@ -7,74 +57,64 @@
 
 <body>
 
-<div class="logo"> The <br> Learning Hub</div>
+<div class="logo">
+    The <br> Learning Hub
+</div>
 
 <div class="container">
 
     <h1>Create Account</h1>
-    <p class="subtitle">Sign up to get started</p>
 
-    <form action="" method="POST">
+    <p class="subtitle">
+        Sign up to get started
+    </p>
+
+    <?php if ($error != "") { ?>
+        <p class="error">
+            <?php echo $error; ?>
+        </p>
+    <?php } ?>
+
+    <form action="signup.php" method="POST">
 
         <label>Username</label>
-        <input type="text" name="username" placeholder="Enter your username">
+        <input type="text"
+               name="username"
+               placeholder="Enter your username"
+               required>
 
         <label>Email</label>
-        <input type="email" name="email" placeholder="someone@gmail.com">
+        <input type="email"
+               name="email"
+               placeholder="someone@gmail.com"
+               required>
 
         <label>Password</label>
-        <input type="password" name="password" placeholder="Create your password">
+        <input type="password"
+               name="password"
+               placeholder="Create your password"
+               required>
 
-        <button type="submit" name="signup">Sign Up</button>
+        <button type="submit">
+            Sign Up
+        </button>
 
     </form>
 
     <p class="login">
-    Already have an account?
-    <a href="login.php">Login</a> 
-</p> <br>
+        Already have an account?
+        <a href="login.php">Login</a>
+    </p>
 
-<p class="login">
-    <a href="homepage.php">(Back to Home Page)</a>
-</p>
+    <br>
+
+    <p class="login">
+        <a href="homepage.php">
+            (Back to Home Page)
+        </a>
+    </p>
 
 </div>
+
 </body>
 </html>
-
-<?php
-include("connection.php");
-
-if(isset($_POST['signup'])){
-
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    // Check if email already exists
-    $check = "SELECT * FROM users WHERE email='$email'";
-    $result = mysqli_query($conn, $check);
-
-    if(mysqli_num_rows($result) > 0){
-        echo "<script>alert('Email already exists!');</script>";
-    }
-    else{
-
-        // Encrypt password
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-        $sql = "INSERT INTO users(fullname, email, password)
-                VALUES('$username', '$email', '$hashedPassword')";
-
-        if(mysqli_query($conn, $sql)){
-            echo "<script>
-                    alert('Account created successfully!');
-                    window.location='login.php';
-                  </script>";
-        }
-        else{
-            echo "<script>alert('Something went wrong!');</script>";
-        }
-    }
-}
-?>

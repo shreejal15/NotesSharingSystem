@@ -1,204 +1,75 @@
 <?php
-
 session_start();
-
-require_once "db.php";
-
-/* CHECK LOGIN */
+if (file_exists("connection.php")) {
+    include("connection.php");
+} else {
+    include("db.php");
+}
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php?message=Please login to continue");
+    header("Location: login.php");
     exit();
 }
 
-/* CHECK STUDENT */
+$quiz_id = isset($_GET['quiz_id']) ? (int)$_GET['quiz_id'] : 1;
 
-if (strtolower($_SESSION['role']) !== 'student') {
-    header("Location: admin.php");
-    exit();
-}
+$quiz_res = mysqli_query($conn, "SELECT * FROM quizzes WHERE id='$quiz_id'");
+$quiz = mysqli_fetch_assoc($quiz_res);
 
-/* GET SUBJECT */
-
-if (!isset($_GET['subject']) || empty($_GET['subject'])) {
-    header("Location: quiz.php");
-    exit();
-}
-
-$subject = $_GET['subject'];
-
-/* FIND QUIZ */
-
-$stmt = $conn->prepare("SELECT id, subject FROM quizzes WHERE subject = ?");
-$stmt->bind_param("s", $subject);
-$stmt->execute();
-
-$result = $stmt->get_result();
-
-if ($result->num_rows === 0) {
-    die("Quiz not found.");
-}
-
-$quiz = $result->fetch_assoc();
-
-$quiz_id = $quiz['id'];
-
-/* GET QUESTIONS */
-
-$stmt = $conn->prepare("
-    SELECT id, question, option_a, option_b, option_c, option_d
-    FROM questions
-    WHERE quiz_id = ?
-");
-
-$stmt->bind_param("i", $quiz_id);
-$stmt->execute();
-
-$questions = $stmt->get_result();
-
-if ($questions->num_rows === 0) {
-    die("No questions have been added to this quiz yet.");
-}
-
+$questions = mysqli_query($conn, "SELECT * FROM questions WHERE quiz_id='$quiz_id'");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title><?php echo htmlspecialchars($subject); ?> - Quiz</title>
-
-    <link rel="stylesheet" href="quiz.css">
-
+    <title>Take Quiz - The Learning Hub</title>
+    <link rel="stylesheet" href="notes.css">
 </head>
-
 <body>
 
 <nav class="nav">
-
     <ul>
-
-        <li>
-            <a href="student.php">Home</a>
-        </li>
-
-        <li>
-            <a href="leaderboard.php">Leaderboard</a>
-        </li>
-
-        <li>
-            <a href="quiz.php" class="active">Take Quiz</a>
-        </li>
-
-        <li>
-            <a href="logout.php">Logout</a>
-        </li>
-
+        <li><a href="<?php echo ($_SESSION['role'] === 'admin') ? 'admin.php' : 'student.php'; ?>">Home</a></li>
+        <li><a href="notes.php">Notes</a></li>
+        <li><a href="quiz.php">Take Quiz</a></li>
+        <li><a href="quiz_results.php">Quiz Results</a></li>
+        <li><a href="logout.php">Logout</a></li>
     </ul>
-
 </nav>
 
-
-<div class="quiz-container">
-
-    <h1><?php echo htmlspecialchars($subject); ?></h1>
-
-    <p class="subtitle">
-        Answer all the questions and submit your quiz.
-    </p>
-
+<div class="content" style="margin: 40px auto; float: none; width: 700px;">
+    <h2>Subject: <?php echo htmlspecialchars($quiz['subject'] ?? 'Quiz'); ?></h2>
 
     <form action="submit_quiz.php" method="POST">
-
         <input type="hidden" name="quiz_id" value="<?php echo $quiz_id; ?>">
 
-
-        <?php
-
-        $number = 1;
-
-        while ($row = $questions->fetch_assoc()) {
-
-        ?>
-
-            <div class="subject-box">
-
-                <h2>
-                    Question <?php echo $number; ?>
-                </h2>
-
-                <p>
-                    <?php echo htmlspecialchars($row['question']); ?>
-                </p>
-
-
-                <label>
-                    <input
-                        type="radio"
-                        name="answers[<?php echo $row['id']; ?>]"
-                        value="A"
-                        required
-                    >
-                    <?php echo htmlspecialchars($row['option_a']); ?>
-                </label>
-
-                <br><br>
-
-                <label>
-                    <input
-                        type="radio"
-                        name="answers[<?php echo $row['id']; ?>]"
-                        value="B"
-                    >
-                    <?php echo htmlspecialchars($row['option_b']); ?>
-                </label>
-
-                <br><br>
-
-                <label>
-                    <input
-                        type="radio"
-                        name="answers[<?php echo $row['id']; ?>]"
-                        value="C"
-                    >
-                    <?php echo htmlspecialchars($row['option_c']); ?>
-                </label>
-
-                <br><br>
-
-                <label>
-                    <input
-                        type="radio"
-                        name="answers[<?php echo $row['id']; ?>]"
-                        value="D"
-                    >
-                    <?php echo htmlspecialchars($row['option_d']); ?>
-                </label>
-
-            </div>
-
-        <?php
-
-            $number++;
-
-        }
-
-        ?>
-
-
-        <button type="submit">
-            Submit Quiz
-        </button>
-
+        <?php if ($questions && mysqli_num_rows($questions) > 0): ?>
+            <?php $count = 1; ?>
+            <?php while ($q = mysqli_fetch_assoc($questions)): ?>
+                <div class="note-item" style="display: block; margin-bottom: 20px;">
+                    <h3>Q<?php echo $count++; ?>: <?php echo htmlspecialchars($q['question']); ?></h3>
+                    <div style="margin-top: 10px;">
+                        <label style="display:block; margin:6px 0; font-size:16px;">
+                            <input type="radio" name="answers[<?php echo $q['id']; ?>]" value="A" required> A) <?php echo htmlspecialchars($q['option_a']); ?>
+                        </label>
+                        <label style="display:block; margin:6px 0; font-size:16px;">
+                            <input type="radio" name="answers[<?php echo $q['id']; ?>]" value="B"> B) <?php echo htmlspecialchars($q['option_b']); ?>
+                        </label>
+                        <label style="display:block; margin:6px 0; font-size:16px;">
+                            <input type="radio" name="answers[<?php echo $q['id']; ?>]" value="C"> C) <?php echo htmlspecialchars($q['option_c']); ?>
+                        </label>
+                        <label style="display:block; margin:6px 0; font-size:16px;">
+                            <input type="radio" name="answers[<?php echo $q['id']; ?>]" value="D"> D) <?php echo htmlspecialchars($q['option_d']); ?>
+                        </label>
+                    </div>
+                </div>
+            <?php endwhile; ?>
+            <button type="submit" style="background:#ba001c; color:white; border:none; padding:12px 24px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:16px;">Submit Quiz Answers</button>
+        <?php else: ?>
+            <p>No questions found for this quiz!</p>
+        <?php endif; ?>
     </form>
-
 </div>
 
 </body>
-
 </html>

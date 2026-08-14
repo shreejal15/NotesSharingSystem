@@ -102,3 +102,16 @@ button:hover{
     text-decoration:none;
     font-weight:bold;
 }
+.success {
+    color: green;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.error {
+    color: #ba001c;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+}

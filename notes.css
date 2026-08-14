@@ -157,3 +157,43 @@ h1{
     background:#e65b15;
     border-color:#a91906;
 }
+
+/* Note Display Items */
+.note-item {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.note-item h3 {
+    color: #ba001c;
+    margin-bottom: 6px;
+    font-size: 20px;
+}
+
+.note-item p {
+    color: #555555;
+    font-size: 14px;
+    margin: 0;
+}
+
+.note-item a {
+    background-color: #ba001c;
+    color: #ffffff;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+
+.note-item a:hover {
+    background-color: #900016;
+}

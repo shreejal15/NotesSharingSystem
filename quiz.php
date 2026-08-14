@@ -2,7 +2,7 @@
 
 session_start();
 
-/* CHECK LOGIN*/
+/* CHECK LOGIN */
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php?message=Please login to continue");
@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 
-/*   CHECK USER ROLE */
+/* CHECK STUDENT ROLE */
 
 if ($_SESSION['role'] !== 'student') {
     header("Location: admin.php");
@@ -34,170 +34,239 @@ if ($_SESSION['role'] !== 'student') {
 
 </head>
 
+
 <body>
 
 
-     <!-- NAVIGATION BAR -->
+<!-- SIDEBAR -->
 
+<div class="sidebar">
 
-<nav class="nav">
+    <h2>The Learning Hub</h2>
 
-    <ul>
 
-        <!-- Logged-in student's home -->
-        <li>
-            <a href="student.php">Home</a>
-        </li>
+    <a href="student.php">
+        Dashboard
+    </a>
 
-        <!-- Notes -->
-        <li>
-            <a href="leaderboard.php">Leaderboards</a>
-        </li>
 
-        <!-- Quiz -->
-        <li>
-            <a href="quiz.php" class="active">Take Quiz</a>
-        </li>
+    <a href="my_notes.php">
+        My Notes
+    </a>
 
-        <!-- Logout -->
-        <li>
-            <a href="logout.php">Logout</a>
-        </li>
 
-    </ul>
+    <a href="upload_notes.php">
+        Upload Notes
+    </a>
 
-</nav>
 
-<!-- MAIN QUIZ CONTENT -->
+    <a href="quiz.php" class="active">
+        Take Quiz
+    </a>
 
-<div class="quiz-container">
 
-    <h1>Take a Quiz</h1>
+    <a href="quiz_results.php">
+        Quiz Results
+    </a>
 
-    <p class="subtitle">
-        Choose a subject to test your knowledge.
-    </p>
 
+    <a href="logout.php">
+        Logout
+    </a>
 
-    <!-- SUBJECT 1 -->
+</div>
 
-    <div class="subject-box">
 
-        <div>
 
-            <h2>Computer Fundamentals and Applications</h2>
+<!-- MAIN CONTENT -->
 
-            <p>
-                Test your knowledge of computer fundamentals.
-            </p>
+<div class="main">
 
-        </div>
 
-        <a href="take_quiz.php?subject=Computer%20Fundamentals%20and%20Applications">
-            Start Quiz
-        </a>
+    <div class="quiz-container">
 
-    </div>
 
+        <h1>
+            Take a Quiz
+        </h1>
 
 
- <!-- subject 2 -->
-
-    <div class="subject-box">
-
-        <div>
-
-            <h2>Society and Technology</h2>
-
-            <p>
-                Test your knowledge of society and technology.
-            </p>
-
-        </div>
-
-        <a href="take_quiz.php?subject=Society%20and%20Technology">
-            Start Quiz
-        </a>
-
-    </div>
-
-
-    <!--   SUBJECT 3-->
-
-    <div class="subject-box">
-
-        <div>
-
-            <h2>C Programming</h2>
-
-            <p>
-                Test your knowledge of C programming.
-            </p>
-
-        </div>
-
-        <a href="take_quiz.php?subject=C%20Programming">
-            Start Quiz
-        </a>
-
-    </div>
-
-
-    <!--   SUBJECT 4-->
-
-    <div class="subject-box">
-
-        <div>
-
-            <h2>Digital Logic</h2>
-
-            <p>
-                Test your knowledge of digital logic.
-            </p>
-
-        </div>
-
-        <a href="take_quiz.php?subject=Digital%20Logic">
-            Start Quiz
-        </a>
-
-    </div>
-
-
-    <!--     SUBJECT 5 -->
-
-    <div class="subject-box">
-
-        <div>
-
-            <h2>Mathematics I</h2>
-
-            <p>
-                Test your knowledge of Mathematics I.
-            </p>
-
-        </div>
-
-        <a href="take_quiz.php?subject=Mathematics%20I">
-            Start Quiz
-        </a>
-
-    </div>
-
-
-    <!--    LEADERBOARD -->
-
-    <div class="leaderboard">
-
-        <h2>🏆 Quiz Leaderboard</h2>
-
-        <p>
-            See how you rank against other students.
+        <p class="subtitle">
+            Choose a subject to test your knowledge.
         </p>
 
-        <a href="leaderboard.php">
-            View Leaderboard
-        </a>
+
+
+        <!-- COMPUTER FUNDAMENTALS -->
+
+        <div class="subject-box">
+
+            <div>
+
+                <h2>
+                    Computer Fundamentals and Applications
+                </h2>
+
+                <p>
+                    Test your knowledge of computer fundamentals.
+                </p>
+
+            </div>
+
+
+            <a href="take_quiz.php?quiz_id=1">
+                Start Quiz
+            </a>
+
+        </div>
+
+
+
+        <!-- SOCIETY AND TECHNOLOGY -->
+
+        <div class="subject-box">
+
+            <div>
+
+                <h2>
+                    Society and Technology
+                </h2>
+
+                <p>
+                    Test your knowledge of society and technology.
+                </p>
+
+            </div>
+
+
+            <a href="take_quiz.php?quiz_id=2">
+                Start Quiz
+            </a>
+
+        </div>
+
+
+
+        <!-- C PROGRAMMING -->
+
+        <div class="subject-box">
+
+            <div>
+
+                <h2>
+                    C Programming
+                </h2>
+
+                <p>
+                    Test your knowledge of C programming.
+                </p>
+
+            </div>
+
+
+            <a href="take_quiz.php?quiz_id=3">
+                Start Quiz
+            </a>
+
+        </div>
+
+
+
+        <!-- DIGITAL LOGIC -->
+
+        <div class="subject-box">
+
+            <div>
+
+                <h2>
+                    Digital Logic
+                </h2>
+
+                <p>
+                    Test your knowledge of digital logic.
+                </p>
+
+            </div>
+
+
+            <a href="take_quiz.php?quiz_id=4">
+                Start Quiz
+            </a>
+
+        </div>
+
+
+
+        <!-- MATHEMATICS -->
+
+        <div class="subject-box">
+
+            <div>
+
+                <h2>
+                    Mathematics I
+                </h2>
+
+                <p>
+                    Test your knowledge of Mathematics I.
+                </p>
+
+            </div>
+
+
+            <a href="take_quiz.php?quiz_id=5">
+                Start Quiz
+            </a>
+
+        </div>
+
+
+
+        <!-- MICROPROCESSOR -->
+
+        <div class="subject-box">
+
+            <div>
+
+                <h2>
+                    Microprocessor
+                </h2>
+
+                <p>
+                    Test your knowledge of Microprocessor.
+                </p>
+
+            </div>
+
+
+            <a href="take_quiz.php?quiz_id=6">
+                Start Quiz
+            </a>
+
+        </div>
+
+
+
+        <!-- LEADERBOARD -->
+
+        <div class="leaderboard">
+
+            <h2>
+                🏆 Quiz Leaderboard
+            </h2>
+
+
+            <p>
+                See how you rank against other students.
+            </p>
+
+
+            <a href="leaderboard.php">
+                View Leaderboard
+            </a>
+
+        </div>
+
 
     </div>
 

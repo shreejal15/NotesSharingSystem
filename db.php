@@ -1,16 +1,9 @@
 <?php
+// Connect to database using 'thelearninghub'
+$conn = mysqli_connect("localhost", "root", "", "thelearninghub");
 
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "thelearninghub";
-
-$conn = new mysqli($host, $username, $password, $database);
-
-if ($conn->connect_error) {
-    die("Database connection failed: " . $conn->connect_error);
+// If connection fails, print error message instead of crashing PHP
+if (!$conn) {
+    die("<h3 style='color:red;'>Database Connection Error: " . mysqli_connect_error() . "</h3>");
 }
-
-$conn->set_charset("utf8mb4");
-
 ?>
