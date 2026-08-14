@@ -10,7 +10,7 @@ if($_SESSION['role'] != "admin"){
     header("Location: student.php");
     exit();
 }
-?>xzAZXSDFERW3QA2   1aZQ
+?>
 
 <!DOCTYPE html>
 <html>

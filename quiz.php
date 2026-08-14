@@ -2,7 +2,7 @@
 
 session_start();
 
-/* CHECK LOGIN */
+/* CHECK LOGIN*/
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php?message=Please login to continue");
@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 
-/* CHECK USER ROLE */
+/*   CHECK USER ROLE */
 
 if ($_SESSION['role'] !== 'student') {
     header("Location: admin.php");
@@ -36,20 +36,22 @@ if ($_SESSION['role'] !== 'student') {
 
 <body>
 
-<!-- NAVIGATION BAR -->
+
+     <!-- NAVIGATION BAR -->
+
 
 <nav class="nav">
 
     <ul>
 
-        <!-- Student Home -->
+        <!-- Logged-in student's home -->
         <li>
             <a href="student.php">Home</a>
         </li>
 
         <!-- Notes -->
         <li>
-            <a href="notes.php">Notes</a>
+            <a href="leaderboard.php">Leaderboards</a>
         </li>
 
         <!-- Quiz -->
@@ -65,7 +67,6 @@ if ($_SESSION['role'] !== 'student') {
     </ul>
 
 </nav>
-
 
 <!-- MAIN QUIZ CONTENT -->
 
@@ -99,7 +100,8 @@ if ($_SESSION['role'] !== 'student') {
     </div>
 
 
-    <!-- SUBJECT 2 -->
+
+ <!-- subject 2 -->
 
     <div class="subject-box">
 
@@ -120,7 +122,7 @@ if ($_SESSION['role'] !== 'student') {
     </div>
 
 
-    <!-- SUBJECT 3 -->
+    <!--   SUBJECT 3-->
 
     <div class="subject-box">
 
@@ -141,7 +143,7 @@ if ($_SESSION['role'] !== 'student') {
     </div>
 
 
-    <!-- SUBJECT 4 -->
+    <!--   SUBJECT 4-->
 
     <div class="subject-box">
 
@@ -162,7 +164,7 @@ if ($_SESSION['role'] !== 'student') {
     </div>
 
 
-    <!-- SUBJECT 5 -->
+    <!--     SUBJECT 5 -->
 
     <div class="subject-box">
 
@@ -183,28 +185,24 @@ if ($_SESSION['role'] !== 'student') {
     </div>
 
 
-    <!-- SUBJECT 6 -->
+    <!--    LEADERBOARD -->
 
-    <div class="subject-box">
+    <div class="leaderboard">
 
-        <div>
+        <h2>🏆 Quiz Leaderboard</h2>
 
-            <h2>Microprocessor</h2>
+        <p>
+            See how you rank against other students.
+        </p>
 
-            <p>
-                Test your knowledge of microprocessor concepts.
-            </p>
-
-        </div>
-
-        <a href="take_quiz.php?subject=Microprocessor">
-            Start Quiz
+        <a href="leaderboard.php">
+            View Leaderboard
         </a>
 
     </div>
 
-
 </div>
+
 
 </body>
 

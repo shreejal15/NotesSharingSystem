@@ -18,7 +18,6 @@ if($_SESSION['role'] != "student"){
     <title>Student Dashboard</title>
     <link rel="stylesheet" href="student.css">
 </head>
-
 <body>
 
 <div class="sidebar">
@@ -31,7 +30,7 @@ if($_SESSION['role'] != "student"){
 
     <a href="#"> Upload Notes</a>
 
-    <a href="#"> Quiz Results</a>
+    <a href="quiz_result.php"> Quiz Results</a>
 
     <a href="logout.php"> Logout</a>
 
