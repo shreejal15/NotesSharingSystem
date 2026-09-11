@@ -252,7 +252,7 @@ if ($_SESSION['role'] !== 'student') {
         <div class="leaderboard">
 
             <h2>
-                🏆 Quiz Leaderboard
+                 Quiz Leaderboard
             </h2>
 
 

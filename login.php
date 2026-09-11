@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                required>
 
         <button type="submit">
-            Log In
+            Login
         </button>
 
     </form>
