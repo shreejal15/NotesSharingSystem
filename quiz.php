@@ -75,6 +75,24 @@ if ($_SESSION['role'] !== 'student') {
     </a>
 
 </div>
+     <!-- LEADERBOARD -->
+
+        <div class="leaderboard">
+
+            <h2>
+                 Quiz Leaderboard
+            </h2>
+
+
+            <p>
+                See how you rank against other students.
+            </p>
+
+
+            <a href="leaderboard.php">
+                View Leaderboard
+            </a>
+            </div>
 
 
 
@@ -195,33 +213,6 @@ if ($_SESSION['role'] !== 'student') {
 
         </div>
 
-
-
-        <!-- MATHEMATICS -->
-
-        <div class="subject-box">
-
-            <div>
-
-                <h2>
-                    Mathematics I
-                </h2>
-
-                <p>
-                    Test your knowledge of Mathematics I.
-                </p>
-
-            </div>
-
-
-            <a href="take_quiz.php?quiz_id=5">
-                Start Quiz
-            </a>
-
-        </div>
-
-
-
         <!-- MICROPROCESSOR -->
 
         <div class="subject-box">
@@ -245,25 +236,6 @@ if ($_SESSION['role'] !== 'student') {
 
         </div>
 
-
-
-        <!-- LEADERBOARD -->
-
-        <div class="leaderboard">
-
-            <h2>
-                 Quiz Leaderboard
-            </h2>
-
-
-            <p>
-                See how you rank against other students.
-            </p>
-
-
-            <a href="leaderboard.php">
-                View Leaderboard
-            </a>
 
         </div>
 
