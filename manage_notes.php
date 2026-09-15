@@ -1,16 +1,18 @@
 <?php
 
 session_start();
+
 require_once "db.php";
 
-/* Check login */
+/* CHECK LOGIN */
 
 if (!isset($_SESSION["user_id"])) {
     header("Location: login.php");
     exit();
 }
 
-/* Check admin */
+
+/* CHECK ADMIN */
 
 if ($_SESSION["role"] != "admin") {
     header("Location: student.php");
@@ -18,7 +20,7 @@ if ($_SESSION["role"] != "admin") {
 }
 
 
-/* Approve Note */
+/* APPROVE NOTE */
 
 if (isset($_GET["approve"])) {
 
@@ -30,7 +32,13 @@ if (isset($_GET["approve"])) {
             WHERE id = ?";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ii", $_SESSION["user_id"], $id);
+
+    $stmt->bind_param(
+        "ii",
+        $_SESSION["user_id"],
+        $id
+    );
+
     $stmt->execute();
 
     header("Location: manage_notes.php");
@@ -38,7 +46,7 @@ if (isset($_GET["approve"])) {
 }
 
 
-/* Reject Note */
+/* REJECT NOTE */
 
 if (isset($_GET["reject"])) {
 
@@ -49,7 +57,12 @@ if (isset($_GET["reject"])) {
             WHERE id = ?";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id);
+
+    $stmt->bind_param(
+        "i",
+        $id
+    );
+
     $stmt->execute();
 
     header("Location: manage_notes.php");
@@ -57,7 +70,7 @@ if (isset($_GET["reject"])) {
 }
 
 
-/* Delete Note */
+/* DELETE NOTE */
 
 if (isset($_GET["delete"])) {
 
@@ -66,7 +79,12 @@ if (isset($_GET["delete"])) {
     $sql = "DELETE FROM notes WHERE id = ?";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id);
+
+    $stmt->bind_param(
+        "i",
+        $id
+    );
+
     $stmt->execute();
 
     header("Location: manage_notes.php");
@@ -74,7 +92,7 @@ if (isset($_GET["delete"])) {
 }
 
 
-/* Get Notes */
+/* GET NOTES */
 
 $sql = "SELECT notes.*,
                users.fullname
@@ -87,9 +105,15 @@ $result = mysqli_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
 
 <head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Manage Notes</title>
 
@@ -97,7 +121,9 @@ $result = mysqli_query($conn, $sql);
 
 </head>
 
+
 <body>
+
 
 <div class="sidebar">
 
@@ -161,47 +187,93 @@ $result = mysqli_query($conn, $sql);
                     <tr>
 
                         <td>
-                            <?php echo htmlspecialchars($note["fullname"]); ?>
+                            <?php
+                            echo htmlspecialchars(
+                                $note["fullname"]
+                            );
+                            ?>
                         </td>
 
-                        <td>
-                            <?php echo htmlspecialchars($note["title"]); ?>
-                        </td>
 
                         <td>
-                            <?php echo htmlspecialchars($note["subject"]); ?>
+                            <?php
+                            echo htmlspecialchars(
+                                $note["title"]
+                            );
+                            ?>
                         </td>
 
-                        <td>
-                            <?php echo htmlspecialchars($note["course"]); ?>
-                        </td>
 
                         <td>
-                            <?php echo htmlspecialchars($note["semester"]); ?>
+                            <?php
+                            echo htmlspecialchars(
+                                $note["subject"]
+                            );
+                            ?>
                         </td>
 
-                        <td>
-                            <?php echo htmlspecialchars($note["status"]); ?>
-                        </td>
 
                         <td>
+                            <?php
+                            echo htmlspecialchars(
+                                $note["course"]
+                            );
+                            ?>
+                        </td>
+
+
+                        <td>
+                            <?php
+                            echo htmlspecialchars(
+                                $note["semester"]
+                            );
+                            ?>
+                        </td>
+
+
+                        <td>
+                            <?php
+                            echo htmlspecialchars(
+                                $note["status"]
+                            );
+                            ?>
+                        </td>
+
+
+                        <td>
+
+                            <!-- VIEW NOTE -->
+
+                            <a
+                                href="uploads/notes/<?php echo rawurlencode($note['file_name']); ?>"
+                                target="_blank"
+                            >
+                                View
+                            </a>
+
 
                             <?php if ($note["status"] == "Pending") { ?>
 
-                                <a href="manage_notes.php?approve=<?php echo $note['id']; ?>">
+                                <!-- APPROVE -->
+
+                                <a
+                                    href="manage_notes.php?approve=<?php echo $note['id']; ?>"
+                                    onclick="return confirm('Approve this note?');"
+                                >
                                     Approve
                                 </a>
 
-                                <a href="manage_notes.php?reject=<?php echo $note['id']; ?>">
+
+                                <!-- REJECT -->
+
+                                <a
+                                    href="manage_notes.php?reject=<?php echo $note['id']; ?>"
+                                    onclick="return confirm('Reject this note?');"
+                                >
                                     Reject
                                 </a>
 
                             <?php } ?>
-
-                            <a href="manage_notes.php?delete=<?php echo $note['id']; ?>"
-                               onclick="return confirm('Are you sure you want to delete this note?');">
-                                Delete
-                            </a>
 
                         </td>
 
