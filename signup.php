@@ -110,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <p class="login">
         <a href="homepage.php">
-            (Back to Home Page)
+            (Go Back to Home Page)
         </a>
     </p>
 
