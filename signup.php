@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         } else {
 
-            $error = "Please try again.";
+            $error = "Something went wrong. Please try again.";
         }
     }
 
