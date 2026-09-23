@@ -29,9 +29,9 @@ $results = $stmt->get_result();
     <link rel="stylesheet" href="student.css">
 </head>
 <body>
-
 <div class="sidebar">
-    <h2>The Learning Hub</h2>
+    <a href="student.php" class="logo">The Learning Hub</a>
+
     <a href="student.php">Dashboard</a>
     <a href="my_notes.php">My Notes</a>
     <a href="upload_notes.php">Upload Notes</a>

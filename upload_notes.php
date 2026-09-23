@@ -305,9 +305,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <div class="sidebar">
 
-    <h2>
-        The Learning Hub
-    </h2>
+    <a href="student.php" class="logo"> The Learning Hub</a>
 
 
     <a href="student.php">
