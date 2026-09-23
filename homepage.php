@@ -6,15 +6,17 @@
 </head>
 
 <body>
-    <nav class="nav">
-        <ul>
-            <li><a href="homepage.php">Home</a></li>
-            <li><a href="notes.php">Notes</a></li>
-            <li><a href="quiz.php">Take Quiz</a></li>
-            <li><a href="signup.php">Signup</a></li>
-            <li><a href="login.php">Login</a></li>
-        </ul>
-    </nav>
+   <nav class="nav">
+    <a href="homepage.php" class="logo">The Learning Hub</a>
+
+    <ul>
+        <li><a href="homepage.php">Home</a></li>
+        <li><a href="notes.php">Notes</a></li>
+        <li><a href="quiz.php">Take Quiz</a></li>
+        <li><a href="signup.php">Signup</a></li>
+        <li><a href="login.php">Login</a></li>
+    </ul>
+</nav>
 
     <section class="body">
         <h1>Learn Together,<br>Succeed Together.</h1>
@@ -24,6 +26,5 @@
     <marquee direction="right" scrollamount="15">
         Login to upload notes.
     </marquee>
-
 </body>
 </html>

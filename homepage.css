@@ -19,12 +19,17 @@ body{
     padding: 25px 80px;
 }
 
-.nav::before{
-    content: "The Learning Hub";
+.logo{
     position: absolute;
     left: 50px;
     font-size: 18px;
     font-weight: bold;
+    text-decoration: none;
+    color: #222;
+}
+
+.logo:hover{
+    color: #ff5a73;
 }
 
 .nav ul{

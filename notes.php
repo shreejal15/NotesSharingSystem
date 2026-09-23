@@ -44,74 +44,26 @@ if ($result) {
 
 <nav class="nav">
 
-    <ul>
+    <a href="homepage.php" class="logo">The Learning Hub</a>
 
+    <ul>
         <?php if (isset($_SESSION['user_id'])): ?>
 
-            <li>
-                <a href="student.php">
-                    Home
-                </a>
-            </li>
-
-            <li>
-                <a href="notes.php">
-                    Notes
-                </a>
-            </li>
-
-            <li>
-                <a href="quiz.php">
-                    Take Quiz
-                </a>
-            </li>
-
-            <li>
-                <a href="quiz_results.php">
-                    Quiz Results
-                </a>
-            </li>
-
-            <li>
-                <a href="logout.php">
-                    Logout
-                </a>
-            </li>
+            <li><a href="student.php">Home</a></li>
+            <li><a href="notes.php">Notes</a></li>
+            <li><a href="quiz.php">Take Quiz</a></li>
+            <li><a href="quiz_results.php">Quiz Results</a></li>
+            <li><a href="logout.php">Logout</a></li>
 
         <?php else: ?>
 
-            <li>
-                <a href="homepage.php">
-                    Home
-                </a>
-            </li>
-
-            <li>
-                <a href="notes.php">
-                    Notes
-                </a>
-            </li>
-
-            <li>
-                <a href="quiz.php">
-                    Take Quiz
-                </a>
-            </li>
-
-            <li>
-                <a href="signup.php">
-                    Signup
-                </a>
-            </li>
-
-            <li>
-                <a href="login.php">
-                    Login
-                </a>
-            </li>
+            <li><a href="homepage.php">Home</a></li>
+            <li><a href="notes.php">Notes</a></li>
+            <li><a href="quiz.php">Take Quiz</a></li>
+            <li><a href="signup.php">Signup</a></li>
+            <li><a href="login.php">Login</a></li>
 
         <?php endif; ?>
-
     </ul>
 
 </nav>
